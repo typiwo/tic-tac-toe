@@ -10,3 +10,10 @@
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
 }
+
+.space {
+    height: 100px;
+    width: 100px;
+    background-color: antiquewhite;
+    border: 1px solid black;
+}
