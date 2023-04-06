@@ -23,6 +23,7 @@ const gameBoard = (() =>
     // Function to set a space with the player sign (X/O)
     const setSpace = (idx, sign) => 
     {
+        if (idx > board.length) return;
         board[idx] = sign;
     };
 
@@ -59,7 +60,11 @@ const displayController = (() =>
     space.addEventListener("click", (e) =>
     {
         // if game is over or if this space is taken
-        if (gameController.getIsOver() || e.target.textContent !== "") return;
+        if (gameController.getIsOver() || e.target.textContent !== "")
+        {
+            console.log("clicking space"); 
+            return;
+        }
 
         // otherwise, play the round and place the sign
         gameController.playRound(parseInt(e.target.dataset.index));
@@ -83,7 +88,7 @@ const displayController = (() =>
     {
         for (let i = 0; i < spaceElements.length; i++)
         {
-            spaceElements[i].textContent = gameBoard.setSpace(i);
+            spaceElements[i].textContent = gameBoard.getSpace(i);
         }
     };
 
