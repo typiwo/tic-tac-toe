@@ -54,17 +54,15 @@ const displayController = (() =>
     const spaceElements = document.querySelectorAll(".space");
     // Load in restart button
     const restartButton = document.getElementById("restart-button");
+    // Load in message display div
+    const messageDisplay = document.getElementById("message");
 
     // Add event listener for each space
     spaceElements.forEach((space) =>
     space.addEventListener("click", (e) =>
     {
         // if game is over or if this space is taken
-        if (gameController.getIsOver() || e.target.textContent !== "")
-        {
-            console.log("clicking space"); 
-            return;
-        }
+        if (gameController.getIsOver() || e.target.textContent !== "") return;
 
         // otherwise, play the round and place the sign
         gameController.playRound(parseInt(e.target.dataset.index));
@@ -92,6 +90,26 @@ const displayController = (() =>
         }
     };
 
+    // Function to set the respective result message
+    const setResultMessage = (winner) =>
+    {
+        if (winner === "Draw")
+        {
+            setMessageElement("It's a draw!");
+        }
+        else
+        {
+            setMessageElement(`Player ${winner} has won!`);
+        }
+    };
+
+    // Function to actually set the text content of the message
+    const setMessageElement = (message) =>
+    {
+        messageDisplay.textContent = message;
+    };
+
+    return { setResultMessage, setMessageElement };
 
 })();
 
@@ -148,6 +166,7 @@ const gameController = (() =>
     {
         round = 1;
         isOver = false;
+        displayController.setMessageElement("Player X's Turn");
     };
 
     // Function to play a round (a player places a token)
@@ -159,6 +178,7 @@ const gameController = (() =>
         // check if someone won with this placement
         if (checkWinner(spaceIdx))
         {
+            displayController.setResultMessage(getCurrentPlayerSign());
             isOver = true;  // game is over
             return;
         }
@@ -166,12 +186,14 @@ const gameController = (() =>
         // check if all spaces filled
         if (round === 9)
         {
+            displayController.setResultMessage("Draw");
             isOver = true;
             return;
         }
 
         // otherwise, update round
         round++;
+        displayController.setMessageElement(`Player ${getCurrentPlayerSign()}'s Turn`);
 
     };
 
