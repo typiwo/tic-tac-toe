@@ -2,31 +2,86 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    font-family: 'Varela Round';
 }
 
 body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: rgb(152, 204, 204);
+}
+
+/* HEADER */
+.header {
+    width: 100%;
+    text-align: center;
+    background-color: rgb(52, 123, 156);
+    color: rgb(235, 234, 234);
+    font-size: 50px;
+    font-weight: bold;
+    padding: 25px;
+    border-bottom: 3px solid black;
+}
+
+/* MESSAGE DIV */
+#message {
+    font-size: 30px;
+    padding: 25px;
 }
 
 /* GAME BOARD */
 .game-board {
     display: grid;
-    grid-template-columns: repeat(3, 100px);
-    grid-template-rows: repeat(3, 100px);
+    grid-template-columns: repeat(3, 120px);
+    grid-template-rows: repeat(3, 120px);
     width: fit-content;
     border: 2px solid black;
 }
 
 .space {
-    height: 100px;
-    width: 100px;
-    background-color: antiquewhite;
+    height: 120px;
+    width: 120px;
+    background-color: rgb(253, 253, 253);
     border: 1px solid black;
-    font-size: 60px;
+    font-size: 70px;
     display: flex;
     align-items: center;
     justify-content: center;
-    
+}
+
+.space:hover {
+    cursor: pointer;
+    background-color: rgb(231, 229, 229);
+}
+
+/* NEW GAME BUTTON*/
+#restart-button {
+    font-size: 30px;
+    padding: 10px 20px 10px 20px;
+    margin-top: 30px;
+    border-radius: 5px;
+    background-color: rgb(52, 123, 156);
+    color: rgb(235, 234, 234);
+    font-weight: bold;
+    border: 3px solid black;
+}
+
+#restart-button:hover {
+    cursor: pointer;
+    background-color: rgb(43, 101, 128);
+}
+
+/* FOOTER */
+.footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 10px;
+    font-size: 20px;
 }
